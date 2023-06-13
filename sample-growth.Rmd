@@ -1,0 +1,51 @@
+---
+title: "Analysis microbial sample growth via OD600"
+author: "Greg McKittrick"
+date: "2023-06-13"
+output: html_document
+---
+
+```{r setup, include= F}
+library(tidyverse)
+library(lubridate)
+library(dplyr)
+library(ggplot2)
+```
+
+```{r}
+data<-read.csv("Book1.csv")
+```
+
+```{r}
+p <- ggplot(data, aes(x = Hours.growth, y = OD600)) +
+  geom_line(aes(color = Organism)) +
+  ggtitle(label ="OD600 of microbial samples") +
+  facet_wrap( ~ Media)
+  
+  #scale_x_date(date_breaks = "2 month", date_labels = "%b")+
+ # ylab('Q (cfs)') + 
+ # xlab('date')+
+ # theme(axis.text.x = element_text(angle = 90, hjust = 1))
+
+p
+
+
+```
+
+```{r}
+p <- ggplot(data, aes(x = Hours.growth, y = OD600)) +
+  geom_col(aes(color = Organism), position = "dodge") +
+  ggtitle(label ="OD600 of microbial samples") +
+  facet_wrap( ~ Media)
+  
+  #scale_x_date(date_breaks = "2 month", date_labels = "%b")+
+ # ylab('Q (cfs)') + 
+ # xlab('date')+
+ # theme(axis.text.x = element_text(angle = 90, hjust = 1))
+
+p
+
+
+```
+
+
